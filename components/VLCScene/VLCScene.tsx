@@ -2,10 +2,11 @@
 
 import { Canvas } from "@react-three/fiber";
 import { RoundedBox } from "@react-three/drei";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import * as THREE from "three";
 
+import EasterEgg from "@/components/EasterEgg/EasterEgg";
 import "./VLCScene.scss";
 
 function ConeSection({
@@ -33,7 +34,7 @@ function ConeSection({
     );
 }
 
-function VLCCone() {
+function VLCCone({ onSecretClick }: { onSecretClick: () => void }) {
     const group = useRef<THREE.Group>(null);
 
     useEffect(() => {
@@ -99,7 +100,15 @@ function VLCCone() {
     }, []);
 
     return (
-        <group ref={group} position={[0, -0.25, -10]} rotation={[0, -0.25, 0]}>
+        <group
+            ref={group}
+            position={[0, -0.25, -10]}
+            rotation={[0, -0.25, 0]}
+            onClick={(event) => {
+                event.stopPropagation();
+                onSecretClick();
+            }}
+        >
             <ConeSection
                 topRadius={0.34}
                 bottomRadius={0.52}
@@ -159,35 +168,68 @@ function VLCCone() {
 }
 
 export default function VLCScene() {
+    const [easterEggActive, setEasterEggActive] = useState(false);
+
+    const clickCount = useRef(0);
+    const clickTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    const handleSecretClick = () => {
+        clickCount.current += 1;
+
+        if (clickTimer.current) {
+            clearTimeout(clickTimer.current);
+        }
+
+        clickTimer.current = setTimeout(() => {
+            clickCount.current = 0;
+        }, 2000);
+
+        if (clickCount.current >= 3) {
+            clickCount.current = 0;
+
+            if (clickTimer.current) {
+                clearTimeout(clickTimer.current);
+            }
+
+            setEasterEggActive(true);
+        }
+    };
+
     return (
-        <div className="vlc-scene">
-            <Canvas
-                camera={{
-                    position: [0, 0, 7],
-                    fov: 40,
-                }}
-                dpr={[1, 1.75]}
-                shadows
-            >
-                <ambientLight intensity={1.2} />
+        <>
+            <div className="vlc-scene">
+                <Canvas
+                    camera={{
+                        position: [0, 0, 7],
+                        fov: 40,
+                    }}
+                    dpr={[1, 1.75]}
+                    shadows
+                >
+                    <ambientLight intensity={1.2} />
 
-                <directionalLight
-                    position={[4, 6, 5]}
-                    intensity={3}
-                    castShadow
-                    shadow-mapSize={[1024, 1024]}
-                />
+                    <directionalLight
+                        position={[4, 6, 5]}
+                        intensity={3}
+                        castShadow
+                        shadow-mapSize={[1024, 1024]}
+                    />
 
-                <directionalLight position={[-4, 2, 2]} intensity={1.4} />
+                    <directionalLight position={[-4, 2, 2]} intensity={1.4} />
 
-                <pointLight
-                    position={[0, 2, 4]}
-                    intensity={1}
-                    color="#ff7a1a"
-                />
+                    <pointLight
+                        position={[0, 2, 4]}
+                        intensity={1}
+                        color="#ff7a1a"
+                    />
 
-                <VLCCone />
-            </Canvas>
-        </div>
+                    <VLCCone onSecretClick={handleSecretClick} />
+                </Canvas>
+            </div>
+
+            {easterEggActive && (
+                <EasterEgg onClose={() => setEasterEggActive(false)} />
+            )}
+        </>
     );
 }

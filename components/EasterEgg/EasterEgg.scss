@@ -1,0 +1,150 @@
+.easter-egg-trigger {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90px;
+    height: 90px;
+    z-index: 20;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+.easter-egg {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #030303;
+}
+
+.easter-egg__glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 106, 0, 0.16),
+        transparent 65%
+    );
+    filter: blur(30px);
+}
+
+.easter-egg__content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    text-align: center;
+    padding: 40px;
+}
+
+.easter-egg__eyebrow {
+    margin: 0 0 24px;
+    color: #ff6a00;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+}
+
+.easter-egg h2 {
+    margin: 0;
+    color: #f5f5f5;
+    font-size: clamp(56px, 8vw, 120px);
+    font-weight: 500;
+    line-height: 0.88;
+    letter-spacing: -0.07em;
+}
+
+.easter-egg h2 span {
+    display: block;
+    color: rgba(245, 245, 245, 0.35);
+}
+
+.easter-egg__description {
+    margin: 32px auto 0;
+    max-width: 420px;
+    color: rgba(245, 245, 245, 0.45);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.easter-egg__close {
+    display: inline-flex;
+    align-items: center;
+    gap: 25px;
+    margin-top: 40px;
+    padding: 15px 22px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(245, 245, 245, 0.7);
+    font-size: 13px;
+    cursor: pointer;
+    transition:
+        background 250ms ease,
+        color 250ms ease,
+        transform 250ms ease;
+}
+
+.easter-egg__close:hover {
+    background: #ff6a00;
+    color: white;
+    transform: scale(1.05);
+}
+
+.easter-egg__close span {
+    font-size: 18px;
+}
+
+.easter-egg__cone {
+    position: absolute;
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 106, 0, 0.2);
+    background: rgba(255, 106, 0, 0.04);
+    box-shadow:
+        0 0 100px rgba(255, 106, 0, 0.12),
+        inset 0 0 60px rgba(255, 106, 0, 0.06);
+}
+
+.easter-egg__cone span {
+    position: absolute;
+    top: 35%;
+    left: 35%;
+    width: 0;
+    height: 0;
+    border-left: 24px solid #ff6a00;
+    border-top: 38px solid transparent;
+    border-bottom: 38px solid transparent;
+    transform: rotate(-45deg);
+}
+
+.easter-egg__hint {
+    position: absolute;
+    right: 30px;
+    bottom: 25px;
+    color: rgba(245, 245, 245, 0.2);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+}
+
+@media (max-width: 600px) {
+    .easter-egg__content {
+        padding: 25px;
+    }
+
+    .easter-egg__cone {
+        width: 100px;
+        height: 100px;
+    }
+
+    .easter-egg__description {
+        font-size: 14px;
+    }
+}
