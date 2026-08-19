@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import "./Navbar.scss";
 
 const navItems = [
@@ -8,10 +11,21 @@ const navItems = [
 ];
 
 export default function Navbar() {
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    const handleLinkClick = () => {
+        setMenuOpen(false);
+    };
+
     return (
-        <header className="navbar">
+        <header className={`navbar ${menuOpen ? "navbar--open" : ""}`}>
             <div className="navbar__inner">
-                <a href="#" className="navbar__brand" aria-label="VLC home">
+                <a
+                    href="#"
+                    className="navbar__brand"
+                    aria-label="VLC home"
+                    onClick={handleLinkClick}
+                >
                     <span className="navbar__cone">◢</span>
                     <span className="navbar__name">VLC</span>
                 </a>
@@ -22,6 +36,7 @@ export default function Navbar() {
                             key={item.label}
                             href={item.href}
                             className="navbar__link"
+                            onClick={handleLinkClick}
                         >
                             {item.label}
                         </a>
@@ -31,7 +46,9 @@ export default function Navbar() {
                 <button
                     className="navbar__menu"
                     type="button"
-                    aria-label="Open menu"
+                    aria-label={menuOpen ? "Close menu" : "Open menu"}
+                    aria-expanded={menuOpen}
+                    onClick={() => setMenuOpen((prev) => !prev)}
                 >
                     <span />
                     <span />
