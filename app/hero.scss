@@ -1,0 +1,195 @@
+.home {
+    min-height: 100vh;
+    background: var(--background);
+}
+
+.hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 100svh;
+    padding: 140px 7vw 80px;
+    overflow: hidden;
+
+    &__content {
+        position: relative;
+        z-index: 2;
+        width: min(650px, 55vw);
+    }
+
+    &__eyebrow {
+        margin: 0 0 24px;
+        color: var(--vlc-orange);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+    }
+
+    &__title {
+        margin: 0;
+        color: var(--foreground);
+        font-size: clamp(64px, 8vw, 128px);
+        font-weight: 500;
+        line-height: 0.88;
+        letter-spacing: -0.07em;
+
+        span {
+            display: block;
+            color: rgba(245, 245, 245, 0.42);
+        }
+    }
+
+    &__description {
+        max-width: 340px;
+        margin: 34px 0 28px;
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1.5;
+        letter-spacing: -0.02em;
+    }
+
+    &__cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 18px;
+        padding: 14px 20px;
+        border: 1px solid rgba(255, 106, 0, 0.45);
+        border-radius: 999px;
+        background: var(--vlc-orange);
+        color: #050505;
+        font-size: 14px;
+        font-weight: 600;
+        transition:
+            transform 250ms ease,
+            box-shadow 250ms ease;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(255, 106, 0, 0.2);
+        }
+    }
+
+    &__cta-arrow {
+        font-size: 16px;
+    }
+
+    &__visual {
+        position: absolute;
+        top: 50%;
+        right: 1vw;
+        width: min(45vw, 680px);
+        height: min(45vw, 680px);
+        transform: translateY(-50%);
+        pointer-events: auto;
+    }
+
+    &__glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 75%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: radial-gradient(
+            circle,
+            rgba(255, 106, 0, 0.18) 10%,
+            rgba(255, 106, 0, 0.07) 42%,
+            transparent 78%
+        );
+        transform: translate(-50%, -50%);
+        filter: blur(30px);
+    }
+
+    &__cone-placeholder {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 260px;
+        height: 320px;
+        border: 1px dashed rgba(255, 255, 255, 0.12);
+        border-radius: 50%;
+        color: rgba(255, 255, 255, 0.18);
+        font-size: 12px;
+        letter-spacing: 0.2em;
+        transform: translate(-50%, -50%);
+    }
+
+    &__scroll {
+        position: absolute;
+        bottom: 32px;
+        left: 7vw;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        color: rgba(245, 245, 245, 0.3);
+        font-size: 9px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+    }
+
+    &__scroll-line {
+        display: block;
+        width: 48px;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    @media (max-width: 900px) {
+        padding: 130px 6vw 90px;
+
+        &__content {
+            width: 65vw;
+        }
+
+        &__visual {
+            right: -8vw;
+            width: 50vw;
+        }
+    }
+
+    @media (max-width: 700px) {
+        align-items: flex-start;
+        min-height: 100svh;
+        padding: 150px 20px 80px;
+
+        &__content {
+            width: 100%;
+        }
+
+        &__eyebrow {
+            margin-bottom: 18px;
+            font-size: 9px;
+        }
+
+        &__title {
+            font-size: clamp(52px, 15vw, 76px);
+            line-height: 0.9;
+        }
+
+        &__description {
+            margin-top: 24px;
+            font-size: 16px;
+        }
+
+        &__visual {
+            top: auto;
+            right: -10%;
+            bottom: -6%;
+            width: 75vw;
+            transform: none;
+            opacity: 0.7;
+        }
+
+        &__cone-placeholder {
+            width: 180px;
+            height: 220px;
+        }
+
+        &__scroll {
+            display: none;
+        }
+    }
+}

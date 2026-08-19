@@ -1,0 +1,128 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 14px 3vw;
+    pointer-events: none;
+
+    &__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        max-width: 1500px;
+        margin: 0 auto;
+        padding: 12px 18px;
+
+        background: rgba(8, 8, 8, 0.78);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+
+        backdrop-filter: blur(32px) saturate(140%);
+        -webkit-backdrop-filter: blur(32px) saturate(140%);
+
+        box-shadow:
+            0 10px 40px rgba(0, 0, 0, 0.25),
+            inset 0 1px 0 rgba(255, 255, 255, 0.03);
+
+        pointer-events: auto;
+    }
+
+    &__brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--foreground);
+    }
+
+    &__name {
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: -0.04em;
+    }
+
+    &__links {
+        display: flex;
+        align-items: center;
+        gap: 38px;
+    }
+
+    &__link {
+        position: relative;
+        color: rgba(245, 245, 245, 0.65);
+        font-size: 14px;
+
+        transition:
+            color 200ms ease,
+            transform 200ms ease,
+            text-shadow 200ms ease;
+
+        &:hover {
+            color: #fff;
+            transform: translateY(-1px);
+            text-shadow:
+                0 0 8px rgba(255, 106, 0, 0.45),
+                0 0 18px rgba(255, 106, 0, 0.2);
+        }
+    }
+
+    &__link::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -7px;
+
+        width: 0;
+        height: 2px;
+
+        background: var(--vlc-orange);
+        border-radius: 999px;
+
+        box-shadow: 0 0 10px rgba(255, 106, 0, 0.7);
+
+        transform: translateX(-50%);
+        transition: width 200ms ease;
+    }
+
+    &__link:hover::after {
+        width: 18px;
+    }
+
+    &__menu {
+        display: none;
+    }
+
+    @media (max-width: 700px) {
+        padding: 10px 14px;
+
+        &__inner {
+            padding: 10px 14px;
+        }
+
+        &__links {
+            display: none;
+        }
+
+        &__menu {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 6px;
+            width: 42px;
+            height: 42px;
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
+            background: transparent;
+
+            span {
+                width: 20px;
+                height: 1px;
+                margin: 0 auto;
+                background: rgba(255, 255, 255, 0.8);
+            }
+        }
+    }
+}

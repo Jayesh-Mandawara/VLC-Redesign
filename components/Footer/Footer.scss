@@ -1,0 +1,107 @@
+.footer {
+    position: relative;
+    padding: 80px 7vw 28px;
+    background: #050505;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+    &__top {
+        display: flex;
+        justify-content: space-between;
+        gap: 80px;
+        padding-bottom: 70px;
+    }
+
+    &__brand {
+        max-width: 360px;
+    }
+
+    &__logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--foreground);
+    }
+
+    &__cone {
+        color: var(--vlc-orange);
+        font-size: 28px;
+        line-height: 1;
+    }
+
+    &__name {
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: -0.04em;
+    }
+
+    &__brand p {
+        max-width: 300px;
+        margin: 24px 0 0;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    &__links {
+        display: flex;
+        gap: 100px;
+    }
+
+    &__column {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        min-width: 130px;
+
+        a {
+            width: fit-content;
+            color: rgba(245, 245, 245, 0.55);
+            font-size: 14px;
+            transition:
+                color 200ms ease,
+                transform 200ms ease;
+
+            &:hover {
+                color: var(--foreground);
+                transform: translateX(3px);
+            }
+        }
+    }
+
+    &__heading {
+        margin-bottom: 8px;
+        color: rgba(245, 245, 245, 0.3);
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+    }
+
+    &__bottom {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        color: rgba(245, 245, 245, 0.25);
+        font-size: 10px;
+        letter-spacing: 0.08em;
+    }
+
+    @media (max-width: 700px) {
+        padding: 70px 20px 25px;
+
+        &__top {
+            flex-direction: column;
+            gap: 60px;
+            padding-bottom: 55px;
+        }
+
+        &__links {
+            gap: 60px;
+        }
+
+        &__bottom {
+            flex-direction: column;
+            gap: 12px;
+        }
+    }
+}
